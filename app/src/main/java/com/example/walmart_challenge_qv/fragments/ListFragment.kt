@@ -55,8 +55,10 @@ class ListFragment : BaseFragment(){
                     binding.countriesRecycler.visibility = View.GONE
                     binding.countryProgress.visibility = View.GONE
 
-                    errorBox(message = state.error.localizedMessage) {
-                        countriesViewModel.getAllCountries()
+                    state.error.localizedMessage?.let {
+                        errorBox(message = it) {
+                            countriesViewModel.getAllCountries()
+                        }
                     }
                 }
             }

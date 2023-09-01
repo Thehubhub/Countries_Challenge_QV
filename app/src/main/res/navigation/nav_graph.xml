@@ -20,12 +20,12 @@
         android:label="Feel free to scroll"
         tools:layout="@layout/fragment_list" >
         <action
-            android:id="@+id/action_listFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            android:id="@+id/action_listFragment_to_detailsFragment"/>
+<!--            app:destination="@id/detailsFragment" />-->
     </fragment>
-    <fragment
-        android:id="@+id/detailsFragment"
-        android:name="com.example.walmart_challenge_qv.fragments.DetailsFragment"
-        android:label="More information on this country"
-        tools:layout="@layout/fragment_details" />
+<!--    <fragment-->
+<!--        android:id="@+id/detailsFragment"-->
+<!--        android:name="com.example.walmart_challenge_qv.fragments.DetailsFragment"-->
+<!--        android:label="More information on this country"-->
+<!--        tools:layout="@layout/fragment_details" />-->
 </navigation>

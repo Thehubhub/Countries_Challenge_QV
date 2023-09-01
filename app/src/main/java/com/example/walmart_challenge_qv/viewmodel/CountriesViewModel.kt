@@ -3,30 +3,23 @@ package com.example.walmart_challenge_qv.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.walmart_challenge_qv.model.CountriesDetails
-import com.example.walmart_challenge_qv.rest.CountriesRepository
-import com.example.walmart_challenge_qv.utils.BaseViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.walmart_challenge_qv.rest.CountriesRepositoryImp
 import com.example.walmart_challenge_qv.utils.ResponseState
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class CountriesViewModel @Inject constructor(
-    private val countriesRepo: CountriesRepository,
-    private val ioDispatcher: CoroutineDispatcher
-) : BaseViewModel(){
+class CountriesViewModel : ViewModel(){
 
     //Retrieving list of countries through LiveData
     private val _countries: MutableLiveData<ResponseState> = MutableLiveData(ResponseState.LOADING)
     val countries: LiveData<ResponseState> get() = _countries
 
-    var countryDetails: CountriesDetails? = null
+    private val countriesRepo= CountriesRepositoryImp()
 
     //Getting all countries
     fun getAllCountries(){
-        viewModelSafeScope.launch(ioDispatcher) {
+        viewModelScope.launch {
             countriesRepo.getAllCountries().collect{
                 _countries.postValue(it)
             }
